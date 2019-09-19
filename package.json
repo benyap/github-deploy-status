@@ -1,6 +1,6 @@
 {
   "name": "github-deploy-status",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node.js scripts that update a repository's Github deployment status.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,9 +8,6 @@
     "build": "yarn clean && tsc -p tsconfig.json",
     "use": "node lib/index.js"
   },
-  "files": [
-    "lib/**"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bwyap/github-deploy-status.git"
