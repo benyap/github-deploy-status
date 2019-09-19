@@ -2,7 +2,9 @@
   "name": "github-deploy-status",
   "version": "1.0.2",
   "description": "Node.js scripts that update a repository's Github deployment status.",
-  "main": "lib/index.js",
+  "bin": {
+    "github-deploy-status": "lib/index.js"
+  },
   "scripts": {
     "clean": "rimraf lib",
     "build": "yarn clean && tsc -p tsconfig.json",

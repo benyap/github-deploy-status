@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import parser from "./parser";
 import * as actions from "./actions";
 
