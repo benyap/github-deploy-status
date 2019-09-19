@@ -1,5 +1,15 @@
+/**
+ * The action to take to udpate the deployment status.
+ *
+ * `create` creates a new deployment. `success`, `failure`
+ * and `error` adds a new deployment status to an existing
+ * deployment.
+ */
 export type Action = "create" | "success" | "failure" | "error";
 
+/**
+ * Possible deployment
+ */
 export type DeploymentStatus =
   | "error"
   | "failure"
@@ -9,16 +19,49 @@ export type DeploymentStatus =
   | "pending"
   | "success";
 
+/**
+ * The input arguments.
+ */
 export interface Arguments {
+  /**
+   * The action to update the deployment status.
+   */
   action: Action;
+  /**
+   * The personal access token used to authenticate the
+   * request to the Github API. See this link for more info:
+   * https://github.blog/2013-05-16-personal-api-tokens/
+   */
   token: string;
+  /**
+   * The environment the deployment status should be
+   * placed under.
+   */
   environment: string;
+  /**
+   * The username of the user who owns the repository
+   * whose deployment status is being updated.
+   */
   user: string;
+  /**
+   * The name of the repository whose deployment status
+   * is being updated.
+   */
   repo: string;
+  /**
+   * The name of the ref that the deployment is deploying
+   * to.
+   */
   ref: string;
+  /**
+   * The URL used to access the deployment.
+   */
   url?: string;
 }
 
+/**
+ * A deployment response from Github.
+ */
 export interface Deployment {
   url: string;
   id: number;

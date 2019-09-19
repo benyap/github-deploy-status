@@ -5,6 +5,9 @@ import {
   getDeployments
 } from "./api";
 
+/**
+ * Create a new deployment for a ref in a repository.
+ */
 export const create = async (args: Arguments) => {
   try {
     await createDeployment(args);
@@ -13,6 +16,9 @@ export const create = async (args: Arguments) => {
   }
 };
 
+/**
+ * Add a success status to the last deployment.
+ */
 export const success = async (args: Arguments) => {
   try {
     const { data } = await getDeployments(args);
@@ -24,6 +30,9 @@ export const success = async (args: Arguments) => {
   }
 };
 
+/**
+ * Add an error status to the last deployment.
+ */
 export const error = async (args: Arguments) => {
   try {
     const { data } = await getDeployments(args);
@@ -35,6 +44,9 @@ export const error = async (args: Arguments) => {
   }
 };
 
+/**
+ * Add a failure status to the last deployment.
+ */
 export const failure = async (args: Arguments) => {
   try {
     const { data } = await getDeployments(args);

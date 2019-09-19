@@ -1,7 +1,7 @@
 {
   "name": "github-deploy-status",
-  "version": "1.1.0",
-  "description": "Node.js scripts that update a repository's Github deployment status.",
+  "version": "1.1.1",
+  "description": "Node.js scripts that update a Github repository's deployment status.",
   "bin": {
     "github-deploy-status": "lib/index.js"
   },

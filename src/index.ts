@@ -5,8 +5,10 @@ import * as actions from "./actions";
 
 import { Arguments } from "./types";
 
+// Parse the incoming arguments
 const args: Arguments = parser.parseArgs();
 
+// Run the appropriate command based on the specified action.
 switch (args.action) {
   case "create":
     actions.create(args);

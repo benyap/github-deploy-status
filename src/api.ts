@@ -4,6 +4,8 @@ import { DeploymentStatus, Deployment } from "./types";
 import { githubAPI } from "./constants";
 
 //
+// Functions to make the required API calls to the Github API.
+//
 // REFERENCE
 // https://developer.github.com/v3/repos/deployments
 //
