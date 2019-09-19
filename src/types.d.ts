@@ -1,14 +1,14 @@
 /**
  * The action to take to udpate the deployment status.
  *
- * `create` creates a new deployment. `success`, `failure`
- * and `error` adds a new deployment status to an existing
- * deployment.
+ * `create` creates a new deployment. `in_progress`, `success`,
+ * `failure` and `error` adds a new deployment status to an
+ * existing deployment.
  */
-export type Action = "create" | "success" | "failure" | "error";
+export type Action = "create" | "success" | "in_progress" | "failure" | "error";
 
 /**
- * Possible deployment
+ * Possible deployment statuses.
  */
 export type DeploymentStatus =
   | "error"

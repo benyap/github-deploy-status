@@ -13,6 +13,8 @@ switch (args.action) {
   case "create":
     actions.create(args);
     break;
+  case "in_progress":
+    actions.progress(args);
   case "success":
     actions.success(args);
     break;

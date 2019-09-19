@@ -1,4 +1,4 @@
-import { Arguments } from "./types";
+import { Arguments, DeploymentStatus } from "./types";
 import {
   createDeployment,
   createDeploymentStatus,
@@ -17,43 +17,35 @@ export const create = async (args: Arguments) => {
 };
 
 /**
- * Add a success status to the last deployment.
+ * Helper function used to add a new deployment status.
  */
-export const success = async (args: Arguments) => {
+const addStatus = async (status: DeploymentStatus, args: Arguments) => {
   try {
     const { data } = await getDeployments(args);
     if (data && data.length) {
-      await createDeploymentStatus(args, data[0].id.toString(), "success");
+      await createDeploymentStatus(args, data[0].id.toString(), status);
     } else throw new Error(`No deployments`);
   } catch (error) {
     console.error(error.toString());
   }
 };
+
+/**
+ * Add a success status to the last deployment.
+ */
+export const success = (args: Arguments) => addStatus("success", args);
+
+/**
+ * Add a in_progress status to the last deployment.
+ */
+export const progress = (args: Arguments) => addStatus("in_progress", args);
 
 /**
  * Add an error status to the last deployment.
  */
-export const error = async (args: Arguments) => {
-  try {
-    const { data } = await getDeployments(args);
-    if (data && data.length) {
-      await createDeploymentStatus(args, data[0].id.toString(), "error");
-    } else throw new Error(`No deployments`);
-  } catch (error) {
-    console.error(error.toString());
-  }
-};
+export const error = (args: Arguments) => addStatus("error", args);
 
 /**
  * Add a failure status to the last deployment.
  */
-export const failure = async (args: Arguments) => {
-  try {
-    const { data } = await getDeployments(args);
-    if (data && data.length) {
-      await createDeploymentStatus(args, data[0].id.toString(), "failure");
-    } else throw new Error(`No deployments`);
-  } catch (error) {
-    console.error(error.toString());
-  }
-};
+export const failure = (args: Arguments) => addStatus("failure", args);

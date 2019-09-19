@@ -138,6 +138,7 @@ jobs:
       before_deploy:
         - yarn add github-deploy-status
         - yarn gds --token $GITHUB_TOKEN -a create -e staging -r develop
+        - yarn gds --token $GITHUB_TOKEN -a in_progress -e staging -r develop
       deploy:
         ...
         on:
@@ -149,6 +150,7 @@ jobs:
       before_deploy:
         - yarn add github-deploy-status
         - yarn gds --token $GITHUB_TOKEN -a create -e production -r master
+        - yarn gds --token $GITHUB_TOKEN -a in_progress -e production -r master
       deploy:
         ...
         on:
@@ -158,7 +160,9 @@ jobs:
 ...
 ```
 
-In the above example, the user's private access token is stored as an
+In the above example, a deployment is created when Travis starts a deployment
+(whose status is set to `pending` by default), and the status is set to `success`
+once the deployment completes. The user's Github access token is stored as an
 environment variable on Travis CI and is access through `$GITHUB_TOKEN`.
 
 ## License
