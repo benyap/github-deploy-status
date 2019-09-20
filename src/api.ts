@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { DeploymentStatus, Deployment } from "./types";
+import { DeploymentStatus, Deployment, DeploymentState } from "./types";
 import { githubAPI } from "./constants";
 
 //
@@ -10,6 +10,9 @@ import { githubAPI } from "./constants";
 // https://developer.github.com/v3/repos/deployments
 //
 
+/**
+ * Get a list of deployments for the specified repository.
+ */
 export const getDeployments = ({
   user,
   repo
@@ -21,6 +24,20 @@ export const getDeployments = ({
     `${githubAPI}/repos/${user}/${repo}/deployments`
   );
 
+/**
+ * Get a lsit of deployment statuses for the specified deployment.
+ */
+export const getDeploymentStatuses = (
+  { user, repo }: { user: string; repo: string },
+  deployment: string
+) =>
+  axios.get<Array<DeploymentStatus>>(
+    `${githubAPI}/repos/${user}/${repo}/deployments/${deployment}/statuses`
+  );
+
+/**
+ * Create a deployment for the specified repository.
+ */
 export const createDeployment = ({
   user,
   repo,
@@ -51,6 +68,9 @@ export const createDeployment = ({
     }
   );
 
+/**
+ * Create a deployment status for the latest deployment in the specified repository.
+ */
 export const createDeploymentStatus = (
   {
     user,
@@ -66,7 +86,7 @@ export const createDeploymentStatus = (
     url?: string;
   },
   deployment: string,
-  state: DeploymentStatus
+  state: DeploymentState
 ) =>
   axios.post(
     `${githubAPI}/repos/${user}/${repo}/deployments/${deployment}/statuses`,

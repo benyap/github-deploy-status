@@ -1,13 +1,20 @@
 import { ArgumentParser } from "argparse";
 
 const parser = new ArgumentParser({
-  version: "1.2.0",
+  version: "1.3.0",
   description: `Node.js scripts that update a repository's Github deployment status.`,
   addHelp: true
 });
 
 parser.addArgument(["--action", "-a"], {
-  optionStrings: ["create", "success", "in_progress", "failure", "error"],
+  optionStrings: [
+    "create",
+    "success",
+    "in_progress",
+    "failure",
+    "error",
+    "fail_if_unsuccessful"
+  ],
   help: "The action to take on the deployment status.",
   required: true
 });

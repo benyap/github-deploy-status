@@ -13,6 +13,9 @@ switch (args.action) {
   case "create":
     actions.create(args);
     break;
+  case "fail_if_unsuccessful":
+    actions.failIfUnsuccessful(args);
+    break;
   case "in_progress":
     actions.progress(args);
   case "success":
