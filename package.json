@@ -10,7 +10,7 @@
     "build": "yarn clean && tsc -p tsconfig.json",
     "use": "node lib/index.js",
     "prepublish": "yarn build",
-    "changelog": "standard-changelog"
+    "changelog": "standard-changelog --first-release"
   },
   "repository": {
     "type": "git",

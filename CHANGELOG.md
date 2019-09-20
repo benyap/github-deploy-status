@@ -1,3 +1,21 @@
+## [1.3.2](https://github.com/bwyap/github-deploy-status/compare/v1.3.1...v1.3.2) (2019-09-20)
+
+
+### Bug Fixes
+
+* make sure build is published ([a70d3ab](https://github.com/bwyap/github-deploy-status/commit/a70d3ab))
+
+
+
+## [1.3.1](https://github.com/bwyap/github-deploy-status/compare/v1.3.0...v1.3.1) (2019-09-20)
+
+
+### Bug Fixes
+
+* fail_if_unsuccessful now runs if there are no deployments ([0c33166](https://github.com/bwyap/github-deploy-status/commit/0c33166))
+
+
+
 # [1.3.0](https://github.com/bwyap/github-deploy-status/compare/v1.2.1...v1.3.0) (2019-09-20)
 
 
