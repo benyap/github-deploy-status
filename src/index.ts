@@ -18,6 +18,7 @@ switch (args.action) {
     break;
   case "in_progress":
     actions.progress(args);
+    break;
   case "success":
     actions.success(args);
     break;
