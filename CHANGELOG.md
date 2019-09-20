@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/bwyap/github-deploy-status/compare/v1.3.2...v1.4.0) (2019-09-20)
+
+
+### Bug Fixes
+
+* in_progress no longer calls success afterwards ([6bdf742](https://github.com/bwyap/github-deploy-status/commit/6bdf742))
+
+
+### Features
+
+* add more informative logging ([963eac5](https://github.com/bwyap/github-deploy-status/commit/963eac5))
+
+
+
 ## [1.3.2](https://github.com/bwyap/github-deploy-status/compare/v1.3.1...v1.3.2) (2019-09-20)
 
 
