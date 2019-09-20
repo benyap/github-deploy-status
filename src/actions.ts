@@ -10,6 +10,7 @@ import {
  * Create a new deployment for a ref in a repository.
  */
 export const create = async (args: Arguments) => {
+  console.log(`Creating a deployment`);
   try {
     await createDeployment(args);
   } catch (error) {
@@ -21,6 +22,8 @@ export const create = async (args: Arguments) => {
  * Helper function used to add a new deployment status.
  */
 const addStatus = async (state: DeploymentState, args: Arguments) => {
+  console.log(`Adding "${state}" state to latest deployment`);
+
   try {
     const { data: deployments } = await getDeployments(args);
     if (deployments && deployments.length) {
@@ -56,6 +59,8 @@ export const failure = (args: Arguments) => addStatus("failure", args);
  * if it is not one of `[successful, failure, error]`.
  */
 export const failIfUnsuccessful = async (args: Arguments) => {
+  console.log(`Adding failure state if deployment was unsuccessful`);
+
   try {
     // Get the current deployments
     const { data: deployments } = await getDeployments(args);
@@ -67,18 +72,20 @@ export const failIfUnsuccessful = async (args: Arguments) => {
       );
 
       if (statuses && statuses.length) {
-        // Check the state of the latest deployment status
+        console.log(
+          `Current status of deployment ${deployments[0].id}: ${statuses[0].state}`
+        );
         if (
-          new Set(["in_progress", "queued", "pending"]).has(statuses[0].state)
-        ) {
-          // Add a failure deployment status
-          await createDeploymentStatus(
-            args,
-            deployments[0].id.toString(),
-            "failure"
-          );
-        }
-      } else throw new Error(`No statuses for deployment ${deployments[0].id}`);
+          // Check the state of the latest deployment status
+          statuses[0].state === "success" ||
+          statuses[0].state === "inactive"
+        )
+          // We can just return if the deployment status was successful or inactive.
+          return;
+      }
+
+      // Otherwise, set a failure status.
+      await addStatus("failure", args);
     } else throw new Error(`No deployments`);
   } catch (error) {
     console.error(error.toString());

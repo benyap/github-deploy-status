@@ -8,7 +8,8 @@
   "scripts": {
     "clean": "rimraf lib",
     "build": "yarn clean && tsc -p tsconfig.json",
-    "use": "node lib/index.js"
+    "use": "node lib/index.js",
+    "changelog": "standard-changelog"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,7 @@
   "devDependencies": {
     "@types/argparse": "1.0.36",
     "rimraf": "3.0.0",
-    "standard-version": "7.0.0",
+    "standard-changelog": "2.0.13",
     "typescript": "3.6.3"
   }
 }

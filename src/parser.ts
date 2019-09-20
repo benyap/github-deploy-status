@@ -1,7 +1,7 @@
 import { ArgumentParser } from "argparse";
 
 const parser = new ArgumentParser({
-  version: "1.3.0",
+  version: "1.3.1",
   description: `Node.js scripts that update a repository's Github deployment status.`,
   addHelp: true
 });
