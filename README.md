@@ -66,24 +66,25 @@ This argument is _required_.
 `<action>` must be one of the following values:
 
 - `create`
-- `fail_if_unsuccessful`
+- `fail_if_unsuccessful` \*
 - `success`
 - `failure`
 - `error`
+- `in_progress`
 
 Using `create` action will create a new deployment.
 
-The `fail_if_unsuccessful` action is special - it will first **check** the status
+\* The `fail_if_unsuccessful` action is special - it will first **check** the status
 of the latest deployment. If it is **NOT** successful (e.g. it is pending or in
 progress), it will add a new `failure` status. This is useful to call at the end
 of your deployment scripts in case the deployment doesn't complete and there is
 no way to receive feedback other than to check the deployment status.
 
 There must be an existing deployment before you add deployment statuses. The
-remaining actions (success, failure, error) will add the respective statuses
+remaining actions (`success`, `failure`, `error`, `in_progress`) will add the respective statuses
 to the most recent deployment.
 
-#### `--environment <environment>` or `-e <environment`
+#### `--environment <environment>` or `-e <environment>`
 
 This argument is _required_.
 
