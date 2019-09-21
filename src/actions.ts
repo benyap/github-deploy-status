@@ -27,7 +27,7 @@ export const create = async (args: Arguments) => {
  * Helper function used to add a new deployment status.
  */
 const addStatus = async (state: DeploymentState, args: Arguments) => {
-  console.log(`addStatus: adding status to latest deployment...`);
+  console.log(`addStatus: adding status [${state}] to latest deployment...`);
 
   try {
     // Get deployments
