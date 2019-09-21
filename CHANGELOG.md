@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/bwyap/github-deploy-status/compare/v1.4.0...v1.4.1) (2019-09-21)
+
+
+### Features
+
+* add logging of state ([1257f0a](https://github.com/bwyap/github-deploy-status/commit/1257f0a))
+
+
+
 # [1.4.0](https://github.com/bwyap/github-deploy-status/compare/v1.3.2...v1.4.0) (2019-09-20)
 
 
