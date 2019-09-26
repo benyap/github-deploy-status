@@ -1,7 +1,12 @@
 import axios from "axios";
 
-import { DeploymentStatus, Deployment, DeploymentState } from "./types";
+import { DeploymentStatus, Deployment, DeploymentState, Arguments } from "./types";
 import { githubAPI } from "./constants";
+
+const getDefaultHeaders = (token: string) => ({
+  Authorization: `token ${token}`,
+  "Content-Type": "application/json"
+});
 
 //
 // Functions to make the required API calls to the Github API.
@@ -15,24 +20,28 @@ import { githubAPI } from "./constants";
  */
 export const getDeployments = ({
   user,
-  repo
-}: {
-  user: string;
-  repo: string;
-}) =>
+  repo,
+  token
+}: Arguments) =>
   axios.get<Array<Deployment>>(
-    `${githubAPI}/repos/${user}/${repo}/deployments`
+    `${githubAPI}/repos/${user}/${repo}/deployments`,
+    {
+      headers: getDefaultHeaders(token)
+    }
   );
 
 /**
  * Get a lsit of deployment statuses for the specified deployment.
  */
 export const getDeploymentStatuses = (
-  { user, repo }: { user: string; repo: string },
+  { user, repo, token }: Arguments,
   deployment: string
 ) =>
   axios.get<Array<DeploymentStatus>>(
-    `${githubAPI}/repos/${user}/${repo}/deployments/${deployment}/statuses`
+    `${githubAPI}/repos/${user}/${repo}/deployments/${deployment}/statuses`,
+    {
+      headers: getDefaultHeaders(token)
+    }
   );
 
 /**
@@ -44,13 +53,7 @@ export const createDeployment = ({
   ref,
   environment,
   token
-}: {
-  user: string;
-  repo: string;
-  ref: string;
-  environment: string;
-  token: string;
-}) =>
+}: Arguments) =>
   axios.post(
     `${githubAPI}/repos/${user}/${repo}/deployments`,
     {
@@ -62,8 +65,7 @@ export const createDeployment = ({
     {
       headers: {
         Accept: "application/vnd.github.v3+json",
-        Authorization: `token ${token}`,
-        "Content-Type": "application/json"
+        ...getDefaultHeaders(token)
       }
     }
   );
@@ -78,13 +80,7 @@ export const createDeploymentStatus = (
     environment,
     token,
     url
-  }: {
-    user: string;
-    repo: string;
-    environment: string;
-    token: string;
-    url?: string;
-  },
+  }: Arguments,
   deployment: string,
   state: DeploymentState
 ) =>
@@ -99,8 +95,7 @@ export const createDeploymentStatus = (
       headers: {
         Accept:
           "application/vnd.github.v3+json; application/vnd.github.flash-preview+json; application/vnd.github.ant-man-preview+json",
-        Authorization: `token ${token}`,
-        "Content-Type": "application/json"
+        ...getDefaultHeaders(token)
       }
     }
   );
